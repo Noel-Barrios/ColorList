@@ -1,10 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
@@ -18,12 +12,28 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor() {
+    super()
+    this.state = {
+      backgroundColor: 'blue'
+    }
+    this.changeColor = this.changeColor.bind(this)
+  }
+
+
+
+  changeColor(backgroundColor) {
+    this.setState({ backgroundColor: backgroundColor })
+  }
+
   render() {
+    const {backgroundColor} = this.state
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={[styles.container, {backgroundColor}]}>
+        <Text style={styles.button}
+          onPress={() => this.changeColor('green')}>Green</Text>
+        <Text style={styles.button}
+          onPress={() => this.changeColor('red')}>Red</Text>
       </View>
     );
   }
@@ -36,14 +46,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
+  button: {
+    fontSize: 30,
     margin: 10,
-  },
-  instructions: {
+    padding: 10,
+    borderWidth: 2,
+    borderRadius: 10,
+    alignSelf: 'stretch',
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
