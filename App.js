@@ -1,8 +1,8 @@
 
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableHighlight} from 'react-native';
-
+import {Platform, StyleSheet, ScrollView} from 'react-native';
+import ColorButton from './components/ColorButton'
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -29,18 +29,28 @@ export default class App extends Component<Props> {
   render() {
     const {backgroundColor} = this.state
     return (
-      <View style={[styles.container, {backgroundColor}]}>
-
-        <TouchableHighlight style={styles.button}
-        onPress={() => this.changeColor('yellow')}
-        underlayColor="orange">
-
-          <View style={styles.row}>
-            <View style={[styles.sample, {backgroundColor: 'yellow'}]} />
-            <Text style={styles.text}>Yellow</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
+      <ScrollView style={[styles.container, {backgroundColor}]}>
+        <ColorButton backgroundColor="red"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="blue"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="green"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="salmon"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="#00FF00"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="rgb(255,0,255)"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="navy"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="brown"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="gray"
+          onSelect={(color) => this.changeColor(color)}/>
+        <ColorButton backgroundColor="orange"
+          onSelect={(color) => this.changeColor(color)}/>
+      </ScrollView>
     );
   }
 }
@@ -48,31 +58,6 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  button: {
-    margin: 10,
-    padding: 10,
-    borderWidth: 2,
-    borderRadius: 10,
-    alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,.8)',
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  sample: {
-    height: 20,
-    width: 20,
-    borderRadius: 10,
-    margin: 5,
-    backgroundColor: 'white',
-  },
-  text: {
-    fontSize: 30,
-    margin: 5,
+    paddingTop: 20,
   },
 });
